@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:02:52 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/07 14:52:56 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:30:08 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	ft_is_a_number(char *str)
 	return (1);
 }
 
+/*Check if there is a sign and a number. If there is a second sign, return error.
+Then check if  the next characters are numbers*/
+
 int	is_no_duplicate(char *s1, char *s2)
 {
 	int	i;
@@ -66,6 +69,7 @@ int	is_no_duplicate(char *s1, char *s2)
 	}
 	return (1);
 }
+/*strcmp*/
 
 long	ft_atol(char *str)
 {
@@ -92,3 +96,4 @@ long	ft_atol(char *str)
 	}
 	return (res * sign);
 }
+/*Long is used to avoid comparison problems in the prog*/

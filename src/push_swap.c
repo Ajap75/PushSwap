@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:06:51 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/06 17:57:31 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:16:09 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ void	ft_tiny_sort(t_stack **stack)
 	if ((*stack)->data > (*stack)->next->data)
 		ft_swap_a(stack);
 }
+/*Sort three elem. Find the smallest. If it's the fst one --> rotate
+if it's the second --> RR,
+Otherwise it's the last one, no need to do anything.
+Then just compare the two first number and swap if the ordre is not good.
+Two action at most*/
+
+/*Is the first element the biggest ? yes -> put it at the bottom of the stack*/
+/*Is the 2nd element the biggest ? yes -> put it at the bottom of the stack*/
+/*No ? So the biggest node is the last one, nothing to do so.*/
+/*Only two nodes to sort remain. Is the first one the biggest ?*/
 
 void	ft_sort_five(t_stack **stack_a, t_stack **stack_b)
 {
@@ -53,10 +63,12 @@ void	ft_sort_five(t_stack **stack_a, t_stack **stack_b)
 	ft_push_a(stack_a, stack_b);
 	ft_push_a(stack_a, stack_b);
 }
-/*Is the first element the biggest ? yes -> put it at the bottom of the stack*/
-/*Is the 2nd element the biggest ? yes -> put it at the bottom of the stack*/
-/*No ? So the biggest node is the last one, nothing to do so.*/
-/*Only two nodes to sort remain. Is the first one the biggest ?*/
+/*Sort five elements. Find a way to use tiny sort. 
+We locate the two smallest elem of the stack (loop condition)
+and we move them to b. Check the min position to the median
+and act the most efficient way. 
+Then  we simply tiny sort the three remaining elems, and we push back on A
+The two smallest elem..*/
 
 void	move_nodes(t_stack **stack_a, t_stack **stack_b)
 {
@@ -70,6 +82,9 @@ void	move_nodes(t_stack **stack_a, t_stack **stack_b)
 	else if (result == 2)
 		move_different_ways(stack_a, stack_b);
 }
+/*Decide which way to move stack_a and b
+regarding the positions of the nodes and the target_node to the median.
+Thanks to the return of the functions study_the_cheapest */
 
 int	ft_break_point_location(t_stack **stack)
 {
@@ -118,5 +133,20 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	while (is_stack_a_sorted(stack_a) == 0 && break_point_location == 1)
 		ft_reverse_rotate_a(stack_a);
 }
-/* verifier les set the cheapest
-probleme sur le dernier tour*/
+/*The prog has to be as efficient as possible. We will handle 4 different 
+cases. 2, 3, 5 and 5+ elem.
+How does Push Swap works ? 
+We will create a structure for every number to sort. The structure will contain
+multiple informations which will be used to sort the elems. Remember, we can only
+apply those actions to the stack : swap, r, rr, p. 
+1) We pre_sort the stack_a`s elems before moving them to stack_b by bloc.
+2) We keep only 3 elems in stack_a to used them as the first target node for every
+element in stack_b. (the code has to be modified. There is no need to push_a back
+ three time due to an improvement to reduce the numnber of actiions)
+3) Every time we move an element from b to a (move nodes),
+we update the informations of every nodes in b and iterate until b is empty (set nodes).
+4) We will end with a stack_a almost sorted. However the min and max may not be the first
+and the last elem, we might need to rotate or reverse rotate. A way to optimize these
+last actions is to locate the breaking_point regarding the median to decide if we'd better
+to rotate or reverse rotate.*/
+

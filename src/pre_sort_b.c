@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_sort_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:29:13 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/05 15:27:38 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:33:56 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	pre_sort_node_set(t_stack **stack_a)
 	set_above_median(stack_a);
 	set_cost(stack_a);
 }
+/*Pre_sort needs those informations to work*/
 
 void	move_quartil(t_stack **stack_a, t_stack **stack_b, int min, int max)
 {

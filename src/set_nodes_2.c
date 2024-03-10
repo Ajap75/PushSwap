@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_nodes_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:58:43 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/06 14:08:18 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:51:04 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ void	set_the_cheapest(t_stack **begin_stack)
 	}
 	minnode->the_cheapest = 1;
 }
+/*the cheapest node in stack_b, is the node with the smalest 
+total_cost. THe total cost, is the cost to put the node itself 
+at the top of the stack_b AND the cost to bring the target node
+in stack_a of this elem in stack_b. 
+We loop on stack_b and we update the_cheapest every time we find 
+a cheapest couple (node/target_node) smaller than the previous one*/
 
 void	set_flag(t_stack **begin_stack, int min)
 {
@@ -119,6 +125,10 @@ void	set_size_index(t_stack **begin_stack)
 		i++;
 	}
 }
+/*we will give each node an index from 1 to stack_size in increasing order. 
+We have to find each time we loop the smalest number of the stack excluding
+the nodes already set (that's why each time we find a minus, we set_flag
+ which set index_is_set of the node structure to 1)*/
 
 void	set_nodes(t_stack **stack_a, t_stack **stack_b)
 {

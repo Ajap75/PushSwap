@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 11:57:00 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/06 15:58:53 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:30:40 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,3 +113,16 @@ void	mrrn_core(t_stack **stack_a, t_stack **stack_b, int j, t_stack *cur)
 			ft_reverse_rotate_b(stack_b);
 	}
 }
+
+/*The core of the functions is extracted due to norminette. 
+!!! We can not optimize the incrementation by inserting it in the
+loop when using RR or R on both stack. Don't know why. 
+If we have decide to move the stacks in the same ways.
+We find the_cheapest node in the stack which has been marked.  
+We move both nodes in the same way :
+TIME smallest cost between the two nodes costs
+Then move the node with the highest cost alone :
+TIME (cost of these node) - (smallest cost between the two nodes costs).
+
+If we call the fonctions move_different_ways, we know which node go where
+Simply due to his position to the median.*/ 

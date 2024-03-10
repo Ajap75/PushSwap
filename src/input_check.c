@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:02:52 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/07 14:55:35 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:25:26 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ int	ft_check_input_error(char **str)
 		return (0);
 	return (1);
 }
+/*Parsing functions must be true otherwise, the prog will stop, the error
+message will be send to the 2nd exit.
+!!! The check double fonction is not effcient enough. The number will be checked
+again, once the stack has been initialized */
 
 int	ft_check_number(char **str)
 {

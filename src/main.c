@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:22:48 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/07 15:26:23 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:34:48 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	free_stack(t_stack *begin_list)
 	}
 	begin_list = NULL;
 }
+/*Go through the the list and free every elements, keeping track of the next
+element in the chain by using a temporary pointer to element and updating the 
+head of the stack when leaving the loop*/
 
 void	ft_free_argv(char **argv, int argc)
 {
@@ -42,6 +45,7 @@ void	ft_free_argv(char **argv, int argc)
 		free(argv);
 	}
 }
+/*Free every string in the array, then free the pointer to array*/
 
 static void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 {
@@ -82,3 +86,15 @@ int	main(int argc, char **argv)
 		ft_sort(&stack_a, &stack_b);
 	free_stack(stack_a);
 }
+
+/*This program aim to sort a list of number. First of all
+ the parsing has to be done. 
+ No arguments, empty string. 
+ If only one arguments. ft_split is used.
+ Then, the prog will begin the parsing.
+ Anything that has been allocated must be freed. The stack_a and
+ The pointer to array returned by ft_split. 
+ A second parsing will be done in the ft_init_stqck (improvement due to the lack
+ of effeciency of the is_there_double apply to a string with strcmp. Ex : 008, +8, 8)
+ If the stack is not sorted, we will call ft_sort which calls the different algorithms 
+ regarding the size of the stack. 

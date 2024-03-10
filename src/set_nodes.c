@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_nodes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:06:51 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/05 16:07:48 by anastruc         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:43:11 by antoinejour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	set_above_median(t_stack **begin_stack)
 		cur = cur->next;
 	}
 }
+/* >= median is important because to reduce by one the number of action
+ when the node is ON the median */
 
 void	set_cost(t_stack **begin_stack)
 {
@@ -63,6 +65,7 @@ void	set_cost(t_stack **begin_stack)
 		cur = cur->next;
 	}
 }
+/*The cost to bring the elem at the top of the stack*/
 
 void	set_target_node(t_stack **begin_stack_a, t_stack **begin_stack_b)
 {
@@ -92,3 +95,11 @@ void	set_target_node(t_stack **begin_stack_a, t_stack **begin_stack_b)
 		delta = INT_MAX;
 	}
 }
+/*We must find for each elem of stack_b, a target node in stack_a. The target not of 
+elem_b is the closest upper elem in stack_a. If there is no upper elem in stack_a, 
+THe target node is the smallest.
+For each elem in b, we will loop the entire stack_a updating the target node, each
+time we find a a_elem even closer. (with a delta even smaller
+than the previous target node find). If during the loop on A,
+ the delta hasn't been changed, it means that there is no closest upper number of elem_b
+ in A, so the target node is the min of A. */
