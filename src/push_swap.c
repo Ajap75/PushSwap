@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
+/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:06:51 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/10 18:16:09 by antoinejour      ###   ########.fr       */
+/*   Updated: 2024/03/11 12:56:49 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	ft_sort_five(t_stack **stack_a, t_stack **stack_b)
 	ft_push_a(stack_a, stack_b);
 	ft_push_a(stack_a, stack_b);
 }
-/*Sort five elements. Find a way to use tiny sort. 
+/*Sort five elements. Find a way to use tiny sort.
 We locate the two smallest elem of the stack (loop condition)
 and we move them to b. Check the min position to the median
-and act the most efficient way. 
+and act the most efficient way.
 Then  we simply tiny sort the three remaining elems, and we push back on A
 The two smallest elem..*/
 
@@ -95,12 +95,12 @@ int	ft_break_point_location(t_stack **stack)
 	break_point = *stack;
 	if (break_point->data > break_point->next->data)
 	{
-		while (break_point->data > break_point->next->data && break_point->next)
+		while (break_point->next && break_point->data > break_point->next->data)
 			break_point = break_point->next;
 	}
 	else
 	{
-		while (break_point->data < break_point->next->data && break_point->next)
+		while (break_point->next && break_point->data < break_point->next->data)
 			break_point = break_point->next;
 	}
 	if (break_point->above_median == 1)
@@ -111,7 +111,7 @@ int	ft_break_point_location(t_stack **stack)
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
-	int		break_point_location;
+	int	break_point_location;
 
 	if (ft_stack_size(*stack_a) < 150)
 		pre_sort_in_two(stack_a, stack_b);
@@ -133,20 +133,27 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	while (is_stack_a_sorted(stack_a) == 0 && break_point_location == 1)
 		ft_reverse_rotate_a(stack_a);
 }
-/*The prog has to be as efficient as possible. We will handle 4 different 
+/*The prog has to be as efficient as possible. We will handle 4 different
 cases. 2, 3, 5 and 5+ elem.
-How does Push Swap works ? 
+How does Push Swap works ?
 We will create a structure for every number to sort. The structure will contain
-multiple informations which will be used to sort the elems. Remember, we can only
-apply those actions to the stack : swap, r, rr, p. 
-1) We pre_sort the stack_a`s elems before moving them to stack_b by bloc.
-2) We keep only 3 elems in stack_a to used them as the first target node for every
-element in stack_b. (the code has to be modified. There is no need to push_a back
+multiple informations which will be used
+ to sort the elems. Remember, we can only
+apply those actions to the stack : swap, r, rr, p.
+1) We pre_sort the stack_a`s elems before
+ moving them to stack_b by bloc.
+2) We keep only 3 elems in stack_a
+ to used them as the first target node for every
+element in stack_b. (the code has to be modified.
+ There is no need to push_a back
  three time due to an improvement to reduce the numnber of actiions)
 3) Every time we move an element from b to a (move nodes),
-we update the informations of every nodes in b and iterate until b is empty (set nodes).
-4) We will end with a stack_a almost sorted. However the min and max may not be the first
-and the last elem, we might need to rotate or reverse rotate. A way to optimize these
-last actions is to locate the breaking_point regarding the median to decide if we'd better
+we update the informations of every nodes in b and iterate
+ until b is empty (set nodes).
+4) We will end with a stack_a almost sorted.
+ However the min and max may not be the first
+and the last elem, we might need to rotate or reverse rotate.
+ A way to optimize these
+last actions is to locate the breaking_point
+ regarding the median to decide if we'd better
 to rotate or reverse rotate.*/
-

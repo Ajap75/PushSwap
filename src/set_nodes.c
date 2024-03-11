@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_nodes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoinejourdan-astruc <antoinejourdan-a    +#+  +:+       +#+        */
+/*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 15:06:51 by anastruc          #+#    #+#             */
-/*   Updated: 2024/03/10 18:43:11 by antoinejour      ###   ########.fr       */
+/*   Updated: 2024/03/11 09:02:46 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,16 @@ void	set_target_node(t_stack **begin_stack_a, t_stack **begin_stack_b)
 		delta = INT_MAX;
 	}
 }
-/*We must find for each elem of stack_b, a target node in stack_a. The target not of 
-elem_b is the closest upper elem in stack_a. If there is no upper elem in stack_a, 
+/*We must find for each elem of stack_b,
+ a target node in stack_a. The target not of
+elem_b is the closest upper elem in stack_a.
+ If there is no upper elem in stack_a,
 THe target node is the smallest.
-For each elem in b, we will loop the entire stack_a updating the target node, each
-time we find a a_elem even closer. (with a delta even smaller
+For each elem in b, we will loop the entire stack_a updating
+ the target node, each
+time we find a a_elem even closer.
+ (with a delta even smaller
 than the previous target node find). If during the loop on A,
- the delta hasn't been changed, it means that there is no closest upper number of elem_b
+ the delta hasn't been changed,
+  it means that there is no closest upper number of elem_b
  in A, so the target node is the min of A. */
